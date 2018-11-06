@@ -1,5 +1,6 @@
 class Ammunition < ApplicationRecord
-  belongs_to :weapon
+  has_many :weapon_ammunitions, :dependent => :destroy
+  has_many :weapons
 
   validates :name, uniqueness: true
   validates :name, :description, presence: true
