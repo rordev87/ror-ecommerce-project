@@ -1,3 +1,3 @@
 class Page < ApplicationRecord
-  validates :url, :title, :slug, :main_content, :secondary_content, :sidebar
+  validates :title, :slug, :url, :main_content, :secondary_content, :sidebar, presence: true
 end
