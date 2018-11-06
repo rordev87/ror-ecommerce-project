@@ -1,0 +1,46 @@
+Ballistic: pistols, rifles, smgs, shotguns, heavy weapons
+Energy: pistols, rifles, heavy weapons
+Explosive: projectile, thrown, placed
+Melee: bladed, blunt, thrown, unarmed
+-------
+Weapons
+ID
+page_link
+image_link
+name
+description
+* specifics *
+weight
+price (in caps)
+require skill
+required strength
+
+Clothing
+Armor: light, medium, heavy
+Headgear: glasses, hats, helmets
+Armors
+-----
+ID
+page_link
+image_link
+DamageThreshold
+weight
+price (in caps)
+health
+effect
+
+Ammo
+ID
+name
+page_link
+description
+price (in caps)
+
+Mods
+ID
+name
+image_link
+description
+weapon ID
+effect
+price (in caps)
