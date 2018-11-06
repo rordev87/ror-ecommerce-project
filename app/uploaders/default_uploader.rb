@@ -29,7 +29,9 @@ class DefaultUploader < CarrierWave::Uploader::Base
   end
 
   # Create different versions of your uploaded files:
-
+  version :medium do
+    process resize_to_fit: [100, 60]
+  end
   version :thumb do
     process resize_to_fit: [60, 45]
   end
