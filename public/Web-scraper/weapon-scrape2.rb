@@ -5,7 +5,6 @@ require "csv"
 
 def self.get_ammo_id(name)
   num = 0
-  puts name.gsub(/\s+/, "")
   case name.gsub(/\s+/, "")
     when ".22LRround"
       num = 1
@@ -58,7 +57,6 @@ def self.get_ammo_id(name)
     when "Microfusionbreeder"
       num = 24
     end
-    puts num
     return num
 end
 
@@ -88,7 +86,7 @@ descriptions = []
 images = []
 
 tables = doc.css('table.va-table')
-for j in 0..8
+for j in 0..6
   weapon = tables[j].css("tr")
   weapon_count = weapon.size - 1
   for i in 1..weapon_count
@@ -100,19 +98,34 @@ for j in 0..8
   end
 end
 
-for j in 8..9
+# energy heavy weapons
+for j in 7..7
+  weapon = tables[j].css("tr")
+  weapon_count = weapon.size - 1
+  for i in 1..weapon_count
+    links.push(weapon[i].css("td a")[1]["href"][1..-1])
+    categories.push(j+1)
+    munitions.push(get_ammo_id(weapon[i].css("td")[10].text.chomp()))
+    weights.push(weapon[i].css("td")[13].text.chomp())
+    prices.push(weapon[i].css("td")[14].text.chomp())
+  end
+end
+
+# explosive projectile
+for j in 8..8
   weapon = tables[j].css("tr")
   weapon_count = weapon.size - 1
   for i in 1..weapon_count
     links.push(weapon[i].css("td a")[1]["href"][1..-1])
     categories.push(j+1)
     munitions.push("none")
-    weights.push(weapon[i].css("td")[10].text.chomp())
-    prices.push(weapon[i].css("td")[11].text.chomp())
+    weights.push(weapon[i].css("td")[12].text.chomp())
+    prices.push(weapon[i].css("td")[13].text.chomp())
   end
 end
 
-for j in 9..10
+# explosive THROWN
+for j in 9..9
   weapon = tables[j].css("tr")
   weapon_count = weapon.size - 1
   for i in 1..weapon_count
@@ -124,7 +137,8 @@ for j in 9..10
   end
 end
 
-for j in 10..14
+# explosive placed
+for j in 10..10
   weapon = tables[j].css("tr")
   weapon_count = weapon.size - 1
   for i in 1..weapon_count
@@ -133,6 +147,19 @@ for j in 10..14
     munitions.push("none")
     weights.push(weapon[i].css("td")[6].text.chomp())
     prices.push(weapon[i].css("td")[7].text.chomp())
+  end
+end
+
+# melee
+for j in 11..13
+  weapon = tables[j].css("tr")
+  weapon_count = weapon.size - 1
+  for i in 1..weapon_count
+    links.push(weapon[i].css("td a")[1]["href"][1..-1])
+    categories.push(j+1)
+    munitions.push("none")
+    weights.push(weapon[i].css("td")[10].text.chomp())
+    prices.push(weapon[i].css("td")[11].text.chomp())
   end
 end
 
@@ -151,7 +178,7 @@ CSV.open("guns.csv", "wb") do |csv|
     # File.open("images/weapons/#{image_name}.png", 'wb') do |fo|
     #   fo.write open("#{image}").read
     # end
-    puts "#{image_name} scraped successfully..."
+    puts "#{image_name} scraped successfully... [Weight: #{weights[i]}, Price: #{prices[i]}]"
 
     descriptions.push(description)
     csv << [i+1, weapons[i], munitions[i], categories[i], weights[i], prices[i], descriptions[i]]
