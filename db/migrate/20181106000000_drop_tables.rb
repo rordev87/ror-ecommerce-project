@@ -3,5 +3,6 @@ class DropTables < ActiveRecord::Migration[5.2]
     # drop_table :weapons
     # drop_table :ammunitions
     # drop_table :categories
+    # drop_table :admin_users
   end
 end

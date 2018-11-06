@@ -1,7 +1,9 @@
 require 'csv'
 
-# Category.destroy_all
-# puts "Categories table destroyed..."
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+
+Category.destroy_all
+puts "Categories table destroyed..."
 Ammunition.destroy_all
 puts "Ammunitions table destroyed..."
 Weapon.destroy_all
@@ -20,21 +22,21 @@ categories.each do |category, index|
   end
 end
 
-# ammo_csv_text = File.read(Rails.root.join("public/Web-scraper", "ammo.csv"))
-# ammo_csv = CSV.parse(ammo_csv_text, :headers => true)
-# ammo_csv.each do |row|
-#   ammo = Ammunition.create(id: row["id"],
-#                            name: row["name"],
-#                            price: row["price"],
-#                            description: row["description"])
-#   ammo.save
+ammo_csv_text = File.read(Rails.root.join("public/Web-scraper", "ammo.csv"))
+ammo_csv = CSV.parse(ammo_csv_text, :headers => true)
+ammo_csv.each do |row|
+  ammo = Ammunition.create(id: row["id"],
+                           name: row["name"],
+                           price: row["price"],
+                           description: row["description"])
+  ammo.save
 
-#   if (ammo.save)
-#     puts "#{ammo.name} saved!"
-#   else
-#     puts "#{ammo.errors.details}"
-#   end
-# end
+  if (ammo.save)
+    puts "#{ammo.name} saved!"
+  else
+    puts "#{ammo.errors.details}"
+  end
+end
 
 lastAmmunition = Ammunition.create(id: 26, name:"Melee", description:"N/A", price: 0, created_at: Time.now, updated_at: Time.now)
 if (lastAmmunition.save)
