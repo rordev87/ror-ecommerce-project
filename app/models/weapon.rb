@@ -3,7 +3,6 @@ class Weapon < ApplicationRecord
   has_many :categories
 
   validates :name, uniqueness:true
-  validates :name, :description, presence: true
-  validates :in_stock, inclusion: { in: [true, false] }
-  validates :weight, :price, numericality: { greater_than: 0 }
+  validates :name, :description, :in_stock, presence: true
+  validates :weight, :price, numericality: { greater_than_or_equal_to: 0 }
 end
