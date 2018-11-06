@@ -1,4 +1,6 @@
 class Weapon < ApplicationRecord
+  mount_uploader :image, DefaultUploader
+
   has_many :weapon_ammunitions, :dependent => :destroy
   has_many :ammunitions
   belongs_to :category
