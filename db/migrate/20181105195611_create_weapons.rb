@@ -7,6 +7,7 @@ class CreateWeapons < ActiveRecord::Migration[5.2]
       t.decimal :price
       t.string :image
       t.boolean :in_stock
+      t.references :category, foreign_key: true
 
       t.timestamps
     end

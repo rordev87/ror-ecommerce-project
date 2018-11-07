@@ -79,9 +79,10 @@ ActiveRecord::Schema.define(version: 2018_11_06_195000) do
     t.decimal "price"
     t.string "image"
     t.boolean "in_stock"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "category_id"
+    t.index ["category_id"], name: "index_weapons_on_category_id"
   end
 
 end

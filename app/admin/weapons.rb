@@ -1,15 +1,24 @@
 ActiveAdmin.register Weapon do
+  remove_filter :weapon_ammunitions, :in_stock, :image
   permit_params :name, :description, :in_stock, :weight, :price, :image, :category_id, weapon_ammunitions_attributes: [:id, :weapon_id, :ammunition_id, :_destroy]
+
+
+  scope :all, :default => true
+  scope :available do |products|
+    products.where(:in_stock => true)
+  end
+  scope :sold_out do |products|
+    products.where(:in_stock => false)
+  end
 
   index do
     selectable_column
-    column :id
     column :name
-    column "Thumbnail" do |weapon|
+    column "Image" do |weapon|
       image_tag(weapon.image.thumb.url) if weapon.image?
     end
     column :price
-    column :in_stock
+    column :weight
     column :ammunitions do |weapon|
       weapon.ammunitions.map { |w| link_to w.name, admin_ammunition_path(w) }.join(", ").html_safe
     end
@@ -25,7 +34,7 @@ ActiveAdmin.register Weapon do
       row :price
       row :category
       row :ammunitions do |weapon|
-        weapon.ammunitions.map { |w| w.name }.join(", ").html_safe
+        weapon.ammunitions.map { |w| link_to w.name, admin_ammunition_path(w) }.join(", ").html_safe
       end
     end
   end

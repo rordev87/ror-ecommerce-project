@@ -1,6 +1,8 @@
 require 'csv'
 
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if (!AdminUser.find_by(email: 'admin@example.com'))
+  AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+end
 
 Category.destroy_all
 puts "Categories table destroyed..."
@@ -38,22 +40,30 @@ ammo_csv.each do |row|
   end
 end
 
-lastAmmunition = Ammunition.create(id: 26, name:"Melee", description:"N/A", price: 0, created_at: Time.now, updated_at: Time.now)
+lastAmmunition = Ammunition.create(id: 26, name:"Melee", description:"Hit em real good...", price: 0.1, created_at: Time.now, updated_at: Time.now)
 if (lastAmmunition.save)
-    puts "#{lastAmmunition.name} saved!"
-  else
-    puts "#{lastAmmunition.errors.details}"
-  end
+  puts "#{lastAmmunition.name} saved!"
+else
+  puts "#{lastAmmunition.errors.details}"
+end
 
-weapon_csv_text = File.read(Rails.root.join("public/Web-scraper", "guns.csv"))
+weapon_csv_text = File.read(Rails.root.join('public', 'Web-scraper', 'guns.csv'))
 weapon_csv = CSV.parse(weapon_csv_text, :headers => true)
 weapon_csv.each do |row|
 
   weapon = Weapon.new
   weapon.name = row["name"]
+
+  weapon_image_src = Rails.root.join('public', 'Web-scraper', 'images', 'weapons', "#{row["name"]}.png")
+  weapon.image = weapon_image_src.open
+  if (weapon.image)
+    puts "image upload successful!"
+  else
+    puts "image error..."
+  end
+
   weapon.price = row["price"]
-  weapon.category_id = Category.where(id: row["category"]).first.id
-  # puts Category.where(id: row["category"]).first.id
+  weapon.category = Category.find(row["category"].to_i)
   weapon.in_stock = true
   weapon.weight = row["weight"]
   weapon.description = row["description"]
@@ -62,11 +72,11 @@ weapon_csv.each do |row|
   if (weapon.save)
     puts "#{weapon.name} saved!"
   else
-    puts "#{weapon.errors.details}"
+    puts "#{row["name"]} #{weapon.errors.details}"
   end
 
   ammoWeapon = WeaponAmmunition.new
-  if (row["ammo"])
+  if (row["ammo"] == "none" || row["ammo"] == 0)
     ammo_id = 26
   else
     ammo_id = row["ammo"].to_i
