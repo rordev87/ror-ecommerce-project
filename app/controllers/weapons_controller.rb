@@ -1,5 +1,5 @@
-class WeaponController < ApplicationController
-  def show
+class WeaponsController < ApplicationController
+   def show
     @weapon_collection = Weapon.order(:name)
   end
 
