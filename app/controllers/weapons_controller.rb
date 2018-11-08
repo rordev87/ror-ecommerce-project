@@ -1,6 +1,6 @@
 class WeaponsController < ApplicationController
    def index
-    @weapon_collection = Weapon.order(:name).limit(12)
+    @weapon_collection = Weapon.order(:name).page(params[:page])
   end
 
   def show

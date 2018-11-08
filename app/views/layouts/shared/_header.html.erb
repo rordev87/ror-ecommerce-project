@@ -16,7 +16,7 @@
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <i><%= link_to "The Crimson Caravan", root_path, :class => "navbar-item subtitle is-3" %></i>
+        <i><%= link_to "The Crimson Caravan", root_path, :class => "navbar-item subtitle is-4" %></i>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
           <span aria-hidden="true"></span>
@@ -27,32 +27,40 @@
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item subtitle is-5">
-            Weapons
-          </a>
-          <a class="navbar-item subtitle is-5">
-            Ammunitions
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item subtitle is-5">
-            About
-          </a>
-          <a class="navbar-item subtitle is-5">
-            Contact
-          </a>
-        </div>
+        <!-- Weapon + Ammo partials -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <i class="fas fa-khanda" style="color: white; padding-right: 6px;"></i>Weapons
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+            </div>
+          </div><!-- END navbar-dropdown -->
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              <i class="fab fa-autoprefixer" style="color: white; padding-right: 6px;"></i>Ammunition
+            </a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+            </div>
+          </div><!-- END navbar-dropdown -->
+        </div><!-- END navbar-start -->
 
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="tag is-primary is-outlined">
-                Sign up <i class="fas fa-user-plus" style="color: white; padding-left: 5px;" aria-hidden="true"></i>
+              <a class="tag is-primary is-inverted is-outlined">
+                <i class="fas fa-sign-in-alt" style="color: white; padding-right: 6px;" aria-hidden="true"></i>Log in
               </a>
-              <a class="tag is-info is-outlined">
-                Log in <i class="fas fa-sign-in-alt" style="color: white; padding-left: 5px;" aria-hidden="true"></i>
+              <a class="tag is-info is-inverted is-outlined">
+                 <i class="fas fa-user-plus" style="color: white; padding-right: 6px;" aria-hidden="true"></i>Sign up
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
+            </div><!-- END .buttons -->
+          </div><!-- END navbar-item -->
+        </div><!-- END navbar-end -->
+      </div><!-- END navbar-menu -->
     </nav>

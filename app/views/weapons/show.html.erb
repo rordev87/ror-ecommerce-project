@@ -1,0 +1,8 @@
+<%= image_tag(@weapon.image.medium.url) if @weapon.image? %>
+<%= @weapon.name %>
+C$ <%= '%.2f' % @weapon.price %>
+<%= @weapon.description %>
+
+<% @weapon.ammunitions.each do |ammo| %>
+  <%= ammo.name %>
+<% end %>

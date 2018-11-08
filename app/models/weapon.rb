@@ -1,5 +1,6 @@
 class Weapon < ApplicationRecord
   mount_uploader :image, DefaultUploader
+  paginates_per 21
 
   has_many :weapon_ammunitions, :dependent => :destroy
   has_many :ammunitions, through: :weapon_ammunitions
