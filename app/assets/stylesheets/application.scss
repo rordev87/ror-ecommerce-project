@@ -20,3 +20,65 @@
 // @include respond-to(mobile) { }
 // @include respond-to(tablet) { }
 // @include respond-to(desktop) { }
+
+$crimson: RGB(178, 34, 34);
+$footer: #9c9c9c;
+
+.navbar {
+  background: $crimson;
+
+  .navbar-brand {
+    font-family: Overseer;
+  }
+
+  .navbar-burger {
+
+    span {
+      height: 2px;
+    width: 20px;
+    color: white;
+    }
+  }
+
+  .navbar-menu {
+    background: $crimson;
+
+    .navbar-end {
+      .buttons {
+        a {
+          text-decoration: none;
+
+          &.is-primary {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .subtitle {
+    letter-spacing: 0.5rem;
+
+    &:link, &:visited, &:hover, &:active {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  a.navbar-item.subtitle.is-5 {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      color: $crimson;
+    }
+  }
+}
+
+.fab {
+  color: $crimson;
+}
+
+.footer {
+  background: $footer;
+}

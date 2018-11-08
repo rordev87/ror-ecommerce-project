@@ -4,9 +4,9 @@
       <div class="container">
         <div class="content has-text-centered">
           <div class="soc">
-            <a href="#"><i class="fa fa-github-alt fa-2x" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-github-alt fa-3x" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-facebook fa-3x" aria-hidden="true"></i></a>
+            <a href="#"><i class="fab fa-twitter fa-3x" aria-hidden="true"></i></a>
           </div>
           <p>
             Footer content
@@ -14,9 +14,32 @@
         </div>
       </div>
     </footer>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
 
+        // Get all "navbar-burger" elements
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Check if there are any navbar burgers
+        if ($navbarBurgers.length > 0) {
+
+          // Add a click event on each of them
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+
+              // Get the target from the "data-target" attribute
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+
+              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+
+            });
+          });
+        }
+
+      });
     </script>
   </body>
 </html>
