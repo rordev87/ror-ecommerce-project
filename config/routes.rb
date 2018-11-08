@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :weapons
 
-  root :to => "weapons#show"
+  root :to => "weapons#index"
 end

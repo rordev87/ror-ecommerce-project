@@ -1,9 +1,0 @@
-<% @weapon_collection.each do |weapon| %>
-  <div class="weapon">
-    <h3><%= link_to weapon.name, @weapon %></h3>
-    <p>
-      <%= image_tag(weapon.image.medium.url) if weapon.image? %>
-      <%= image_tag(weapon.image.thumb.url) if weapon.image? %>
-    </p>
-  </div>
-<% end %>

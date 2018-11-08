@@ -1,9 +1,9 @@
 class WeaponsController < ApplicationController
-   def show
-    @weapon_collection = Weapon.order(:name)
+   def index
+    @weapon_collection = Weapon.order(:name).limit(12)
   end
 
-  def index
+  def show
     @weapon = Weapon.find(params[:id])
   end
 end
