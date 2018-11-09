@@ -21,14 +21,57 @@
 // @include respond-to(tablet) { }
 // @include respond-to(desktop) { }
 
-$crimson: RGB(178, 34, 34);
-$footer: #9c9c9c;
+$main_red: RGB(178, 34, 34);
+$main_gray: rgb(37, 37, 37);
+$transparent: #afafaf00;
+
+@media screen and (max-width: 1087px)
+{
+  .hero.is-info .navbar-menu {
+      background-color: $transparent;
+  }
+}
+
+// Header Styles
+.hero{
+  &.is-info {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+            ), url('https://images.unsplash.com/photo-1505185166728-2c573eee20ad?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=29f41b45064b83780b53254ade1f3b1f&auto=format&fit=crop&w=1051&q=80') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    a.navbar-item:hover {
+      background-color: $transparent;
+    }
+  }
+
+  .nav, &.is-success {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .subtitle {
+    padding: 3rem 0;
+    line-height: 1.5;
+    letter-spacing: 0.1rem;
+
+    blockquote {
+      color: white;
+    }
+  }
+}
 
 .navbar {
-  background: $crimson;
 
   .navbar-brand {
     font-family: Overseer;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .navbar-burger {
@@ -40,45 +83,25 @@ $footer: #9c9c9c;
     }
   }
 
-  .navbar-menu {
-    background: $crimson;
-
-    .navbar-end {
-      .buttons {
-        a {
-          text-decoration: none;
-
-          &.is-primary {
-            margin-right: 5px;
-          }
-        }
-      }
-    }
-  }
-
   .subtitle {
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.3rem;
+  }
 
-    &:link, &:visited, &:hover, &:active {
-      color: white;
+    .tag:not(body).is-white {
+      font-size: 0.9rem;
+      font-family: Georgia;
+      letter-spacing: 0.1rem;
       text-decoration: none;
-    }
-  }
-
-  a.navbar-item.subtitle.is-6 {
-    color: white;
-    text-decoration: none;
-
-    &:hover {
-      color: $crimson;
-    }
   }
 }
 
-.fab {
-  color: $crimson;
+.hero {
+  font-family: Overseer;
+  letter-spacing: 0.1rem;;
 }
+
+// End header styles
 
 .footer {
-  background: $footer;
+  background: $main_gray;
 }

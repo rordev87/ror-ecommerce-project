@@ -28,8 +28,10 @@ ActiveAdmin.register Weapon do
   show do |weapon|
     attributes_table do
       row :name
+      row "Image" do |weapon|
+        image_tag(weapon.image.medium.url) if weapon.image?
+      end
       row :description
-      row :image
       row :weight
       row :price
       row :category

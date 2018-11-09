@@ -1,9 +1,8 @@
-<% @weapon_collection.in_groups_of(3, false).each do |group| %>
-  <% group.each do |weapon| %>
-    <%= link_to(image_tag(weapon.image.medium.url), weapon_path(weapon)) if weapon.image? %>
-    <%= weapon.name %>
-    C$ <%= '%.2f' % weapon.price %>
-  <% end %>
+</section>
+<section>
+<% @weapon_collection.each do |weapon| %>
+  <%= link_to(image_tag(weapon.image.medium.url), weapon_path(weapon)) if weapon.image? %>
+    <span class="title is-4"><%= weapon.name %></span>
+    <span class="subtitle is-6">C$ <%= '%.2f' % weapon.price %></span>
 <% end %>
-
 <%= paginate @weapon_collection %>
