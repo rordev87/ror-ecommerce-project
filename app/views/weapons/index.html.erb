@@ -1,8 +1,36 @@
-</section>
-<section>
-<% @weapon_collection.each do |weapon| %>
-  <%= link_to(image_tag(weapon.image.medium.url), weapon_path(weapon)) if weapon.image? %>
-    <span class="title is-4"><%= weapon.name %></span>
-    <span class="subtitle is-6">C$ <%= '%.2f' % weapon.price %></span>
+
+<%= form_tag(weapons_path, method: "get") do %>
+  <div class="field">
+    <%= label_tag(:search, "Search for:", class: "label") %>
+    <div class="control">
+      <%= text_field_tag(:search, '', class: "input") %>
+    </div>
+  </div>
+  <div class="field">
+    <%= label_tag(:filter, "Filter for:", class: "label") %>
+    <div class="control">
+      <div class="select">
+        <%= select(:filter, :category_id, @categories.collect {|c| [c.name, c.id]}, {include_blank: ''}) %>
+      </div>
+    </div>
+  </div>
+  <div class="control">
+    <%= submit_tag 'Search', name: nil, class: "button is-link" %>
+  </div>
 <% end %>
-<%= paginate @weapon_collection %>
+
+<% @weapon_collection.in_groups_of(2, false) do |group| %>
+  <div class="columns">
+    <div class="column is-one-third-desktop is-one-fifth-tablet is-5"></div>
+    <% group.each do |weapon| %>
+      <div class="weapon column is-3 is-one-quarter-desktop is-half-tablet is-full-mobile">
+        <%= link_to(image_tag(weapon.image.medium.url), weapon_path(weapon)) if weapon.image? %>
+        <span class="title is-4"><%= weapon.name %></span>
+        <span class="subtitle is-6">C$ <%= '%.2f' % weapon.price %></span>
+      </div>
+    <% end %>
+    </div>
+<% end %>
+</section>
+  <%= paginate @weapon_collection %>
+<section>
