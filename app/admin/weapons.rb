@@ -1,6 +1,6 @@
 ActiveAdmin.register Weapon do
   remove_filter :weapon_ammunitions, :in_stock, :image
-  permit_params :name, :description, :in_stock, :weight, :price, :image, :category_id, weapon_ammunitions_attributes: [:id, :weapon_id, :ammunition_id, :_destroy]
+  permit_params :name, :description, :in_stock, :weight, :price, :image, :category_id, :status, weapon_ammunitions_attributes: [:id, :weapon_id, :ammunition_id, :_destroy]
 
 
   scope :all, :default => true
@@ -35,6 +35,7 @@ ActiveAdmin.register Weapon do
       row :weight
       row :price
       row :category
+      row :status
       row :ammunitions do |weapon|
         weapon.ammunitions.map { |w| link_to w.name, admin_ammunition_path(w) }.join(", ").html_safe
       end
@@ -51,6 +52,7 @@ ActiveAdmin.register Weapon do
       f.input :weight
       f.input :price
       f.input :category
+      f.input :status
       f.has_many :weapon_ammunitions, allow_destroy: true do |n_f|
         n_f.input :ammunition
       end

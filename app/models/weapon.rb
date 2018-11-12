@@ -7,6 +7,7 @@ class Weapon < ApplicationRecord
   accepts_nested_attributes_for :weapon_ammunitions, allow_destroy: true
 
   belongs_to :category
+  belongs_to :status
 
   validates :name, uniqueness:true
   validates :name, :description, presence: true

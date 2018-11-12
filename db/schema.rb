@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_06_195000) do
+ActiveRecord::Schema.define(version: 2018_11_10_003543) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 2018_11_06_195000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "statuses", force: :cascade do |t|
+    t.string "name"
+    t.decimal "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "weapon_ammunitions", force: :cascade do |t|
     t.integer "weapon_id"
     t.integer "ammunition_id"
@@ -82,7 +89,9 @@ ActiveRecord::Schema.define(version: 2018_11_06_195000) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status_id"
     t.index ["category_id"], name: "index_weapons_on_category_id"
+    t.index ["status_id"], name: "index_weapons_on_status_id"
   end
 
 end

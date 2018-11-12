@@ -47,6 +47,10 @@ else
   puts "#{lastAmmunition.errors.details}"
 end
 
+status_new = Status.create(id: 1, name: "new", discount: 0.1)
+status_on_sale = Status.create(id: 2, name: "on sale", discount: 0.3)
+status_recently_updated = Status.create(id: 3, name: "recently updated", discount: 0.2)
+
 weapon_csv_text = File.read(Rails.root.join('public', 'Web-scraper', 'guns.csv'))
 weapon_csv = CSV.parse(weapon_csv_text, :headers => true)
 weapon_csv.each do |row|
@@ -67,6 +71,7 @@ weapon_csv.each do |row|
   weapon.in_stock = true
   weapon.weight = row["weight"]
   weapon.description = row["description"]
+  weapon.status = Status.find(1 + rand(3))
 
   weapon.save
   if (weapon.save)
