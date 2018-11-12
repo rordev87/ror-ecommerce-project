@@ -13,45 +13,45 @@
   </head>
 
   <body>
-    <section class="hero is-info is-fullheight">
-      <div class="hero-head">
-        <nav class="navbar">
-          <div class="container">
-            <div class="navbar-brand">
-              <i><%= link_to "The Crimson Caravan", root_path, :alt => "Logo", :class => "navbar-item subtitle is-4" %></i>
-              <span class="navbar-burger burger" data-target="navbarMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </div>
-            <div id="navbarMenu" class="navbar-menu">
-              <div class="navbar-end">
-                <span class="navbar-item">
-                  <%= link_to "Weapons", weapons_path, :class => "tag is-white is-outlined" %>
-                </span>
-                <span class="navbar-item">
-                  <a class="tag is-white is-outlined" href="#">
-                    <span>Ammunition</span>
-                  </a>
-                </span>
-                <span class="navbar-item">
-                  <%= link_to "About", about_path, :class => "tag is-white is-outlined" %>
-                </span>
-                <span class="navbar-item">
-                  <%= link_to "Contact", contact_path, :class => "tag is-white is-outlined" %>
-                </span>
-                <span class="navbar-item">
-                  <span class="tag is-normal is-primary" style="font-size: 0.9rem;"><i class="fas fa-user-plus" style="padding-right: 5px;"></i>Sign Up</span>
-                </span>
-                <span class="navbar-item">
-                   <span class="tag is-normal is-light" style="font-size: 0.9rem;"><i class="fas fa-sign-in-alt" style="padding-right: 5px;"></i>Log In</span>
-                </span>
-                <span class="navbar-item">
-                   <span class="tag is-normal is-info" style="font-size: 0.9rem;"><i class="fas fa-shopping-cart" style="padding-right: 5px;"></i>Cart</span>
-                </span>
-              </div>
+    <nav class="navbar is-white topNav">
+			<div class="container">
+				<div class="navbar-brand">
+					<i><%= link_to "The Crimson Caravan", root_path, :alt => "Logo", :class => "navbar-item subtitle is-4" %></i>
+					<div class="navbar-burger burger" data-target="topNav">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<div id="topNav" class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to "Weapons", weapons_path, :class => "navbar-item" %>
+          <a class="navbar-item" href="#">Ammunition</a>
+          <%= link_to "About", about_path, :class => "navbar-item" %>
+          <%= link_to "Contact", contact_path, :class => "navbar-item" %>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+              <p class="control">
+                <a class="tag is-small is-info is-outlined">
+                  <span class="icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                  </span>
+                  <span>Login</span>
+                </a>
+              </p>
+              <p class="control">
+                <a class="tag is-small is-info is-outlined">
+                  <span class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                  </span>
+                  <span>Checkout</span>
+                </a>
+              </p>
             </div>
           </div>
-        </nav>
+        </div>
       </div>
+    </div>
+  </nav>

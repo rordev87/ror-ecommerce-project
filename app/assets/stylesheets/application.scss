@@ -25,42 +25,19 @@ $main_red: RGB(178, 34, 34);
 $main_gray: rgb(37, 37, 37);
 $transparent: #afafaf00;
 
-@media screen and (max-width: 1087px)
-{
-  .hero.is-info .navbar-menu {
-      background-color: $transparent;
-  }
+// Header Styles
+.nav {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
-// Header Styles
-.hero{
-  &.is-info {
-    background: linear-gradient(
-            rgba(0, 0, 0, 0.5),
-            rgba(0, 0, 0, 0.5)
-            ), url('https://images.unsplash.com/photo-1505185166728-2c573eee20ad?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=29f41b45064b83780b53254ade1f3b1f&auto=format&fit=crop&w=1051&q=80') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    a.navbar-item:hover {
-      background-color: $transparent;
-    }
-  }
+.subtitle {
+  padding: 3rem 0;
+  line-height: 1.5;
+  letter-spacing: 0.1rem;
 
-  .nav, &.is-success {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .subtitle {
-    padding: 3rem 0;
-    line-height: 1.5;
-    letter-spacing: 0.1rem;
-
-    blockquote {
-      color: white;
-    }
+  blockquote {
+    color: white;
   }
 }
 
@@ -79,33 +56,16 @@ $transparent: #afafaf00;
     span {
       height: 2px;
     width: 20px;
-    color: white;
     }
   }
 
   .subtitle {
     letter-spacing: 0.3rem;
   }
-
-    .tag:not(body).is-white {
-      font-size: 0.9rem;
-      font-family: Georgia;
-      letter-spacing: 0.1rem;
-      text-decoration: none;
-  }
 }
 
 // End header styles
 
 .footer {
-  background: $main_gray;
-}
 
-// Page styles
-.weapon {
-    background: #6a6664f0;
-}
-
-.column {
-  margin: 5px;
 }

@@ -1,8 +1,72 @@
-<%= image_tag(@weapon.image.medium.url) if @weapon.image? %>
-<%= @weapon.name %>
-C$ <%= '%.2f' % @weapon.price %>
-<%= @weapon.description %>
 
-<% @weapon.ammunitions.each do |ammo| %>
-  <%= ammo.name %>
-<% end %>
+<div class="columns">
+  <div class="column previous-weapon"></div>
+  <div class="column is-6">
+    <div class="card large">
+      <div class="card-image">
+        <figure class="image">
+          <%= image_tag(@weapon.image.url, alt: "#{@weapon.name}") if @weapon.image? %>
+        </figure>
+      </div><!-- /card-image -->
+
+      <div class="card-content">
+        <div class="content">
+          <div class="content">
+            <p class="title is-4 no-padding">
+              <%= @weapon.name %>
+            </p>
+            <span class="title is-6">
+                <% if @weapon.status.name == 'new' %>
+                  <span class="subtitle is-6">C$ <%= '%.2f' % (@weapon.price * ( 1 - @weapon.status.discount )) %></span>
+                  <span class= "tag is-success"><%= @weapon.status.name %></span>
+                  <p class="discount"><span class="subtitle is-6">C$ <%= '%.2f' % (@weapon.price) %></span></p>
+                <% elsif @weapon.status.name == 'on sale' %>
+                  <span class="subtitle is-6">C$ <%= '%.2f' % (@weapon.price * ( 1 - @weapon.status.discount )) %></span>
+                  <span class= "tag is-info"><%= @weapon.status.name %></span>
+                  <p class="discount"><span class="subtitle is-6">C$ <%= '%.2f' % (@weapon.price) %></span></p>
+                <% else %>
+                  <span class="subtitle is-6">C$ <%= '%.2f' % (@weapon.price * ( 1 - @weapon.status.discount )) %></span>
+                <% end %>
+            </span>
+          </div>
+          <span class="subtitle is-5"> Ammunition:</span>
+            <% @weapon.ammunitions.each do |ammo| %>
+              <!-- change link_to ammo -->
+              <span class="tag is-light"><%= ammo.name %></span>
+            <% end %>
+          <p class="box">
+            <%= @weapon.description %>
+          </p>
+          <nav class="level is-mobile">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <p class="control">
+                  <a class="tag is-small is-primary is-outlined">
+                    <span class="icon">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                    <span>Add to Cart</span>
+                  </a>
+                </p>
+                <p class="control">
+                  <a class="tag is-small is-light is-outlined">
+                    <span class="icon">
+                      <i class="fas fa-star"></i>
+                    </span>
+                    <span>Add to Wishlist</span>
+                  </a>
+                </p>
+              </div>
+              <p class="control">
+                <span class="icon">
+                  <%= link_to content_tag(:i, 'Back', :class => "fas fa-step-backward tag is-small is-light is-outlined"), :back %>
+                </span>
+              </p>
+            </div>
+          </nav>
+        </div>
+      </div><!--  /card-content -->
+    </div><!-- /card -->
+  </div>
+  <div class="column next-weapon"></div>
+</div>

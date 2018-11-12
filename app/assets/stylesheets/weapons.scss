@@ -1,0 +1,21 @@
+p.discount{
+  .subtitle.is-6 {
+    color: lightgray;
+    text-decoration: line-through;
+  }
+}
+
+.card {
+  .card-content {
+    .title {
+      a {
+        text-decoration: none;
+        color: #4d4d4d;
+      }
+    }
+  }
+}
+
+.next-weapon, .previous-weapon {
+  background: #fafafa;
+}
