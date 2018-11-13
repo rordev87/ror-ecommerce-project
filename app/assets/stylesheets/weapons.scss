@@ -5,7 +5,28 @@ p.discount{
   }
 }
 
-.card {
+
+.column.is-one-third {
+  .card.large {
+    // max-width: 350px;
+    // min-width: 210px;
+    // height: 330px
+    @media screen and (min-width: 375px) {
+      width: 295px;
+    }
+  }
+
+  .card-image {
+    max-width: 350px;
+    min-width: 195px;
+    height: 130px;
+  }
+
+  .image {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
   .card-content {
     .title {
       a {

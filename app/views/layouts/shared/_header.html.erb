@@ -33,14 +33,20 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-              <p class="control">
-                <a class="tag is-small is-info is-outlined">
-                  <span class="icon">
-                    <i class="fas fa-sign-in-alt"></i>
+              <% if user_signed_in? %>
+                <p class="control">
+                  <span class="tag is-small is-primary is-outlined">
+                      <i class="fas fa-sign-out-alt" style="padding-right: 5px;"></i>
+                      <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
                   </span>
-                  <span>Login</span>
-                </a>
-              </p>
+              <% else %>
+                <p class="control">
+                  <span class="tag is-small is-primary is-outlined">
+                      <i class="fas fa-sign-in-alt" style="padding-right: 5px;"></i>
+                      <%= link_to "Log in", new_user_session_path, :method => :get %>
+                  </span>
+                </p>
+              <% end %>
               <p class="control">
                 <a class="tag is-small is-info is-outlined">
                   <span class="icon">

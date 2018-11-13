@@ -5,8 +5,16 @@
             Don't Just Survive.
         </h1>
         <div class="tags is-centered">
-          <span class="tag is-normal is-primary" style="font-size: 0.9rem;"><i class="fas fa-user-plus" style="padding-right: 5px;"></i>Sign Up</span>
-          <span class="tag is-normal is-light" style="font-size: 0.9rem;"><i class="fas fa-sign-in-alt" style="padding-right: 5px;"></i>Log In</span>
+          <% if user_signed_in? %>
+            <h2 class="subtitle is-3">Welcome back, old friend.</h2>
+          <% else %>
+            <span class="tag is-normal is-primary" style="font-size: 0.9rem;"><i class="fas fa-user-plus" style="padding-right: 5px;"></i>
+              <%= link_to "Sign up", new_user_registration_path, :method => :get %>
+            </span>
+            <span class="tag is-normal is-light" style="font-size: 0.9rem;"><i class="fas fa-sign-in-alt" style="padding-right: 5px;"></i>
+              <%= link_to "Log in", new_user_session_path, :method => :get %>
+          </span>
+          <% end%>
         </div>
         <h2 class="subtitle is-3">
           <blockquote cite="https://www.brainyquote.com/quotes/noam_chomsky_447307?src=t_nuclear_war">
