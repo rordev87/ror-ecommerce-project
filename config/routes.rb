@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :weapons
   get '/about', to: 'pages#about'
   get '/contact', to: 'pages#contact'
-  get '/checkout' to: 'pages#checkout'
 
   root :to => "pages#home"
 end

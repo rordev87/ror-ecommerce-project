@@ -6,7 +6,7 @@
         </h1>
         <div class="tags is-centered">
           <% if user_signed_in? %>
-            <h2 class="subtitle is-3">Welcome back, old friend.</h2>
+            <h2 class="subtitle is-3">Welcome back, <%= current_user.email %>!</h2>
           <% else %>
             <span class="tag is-normal is-primary" style="font-size: 0.9rem;"><i class="fas fa-user-plus" style="padding-right: 5px;"></i>
               <%= link_to "Sign up", new_user_registration_path, :method => :get %>
