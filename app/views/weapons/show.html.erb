@@ -39,24 +39,20 @@
           </p>
           <nav class="level is-mobile">
             <div class="navbar-item">
+
+              <%= form_tag add_to_cart_weapon_path, method: "post" do %>
               <div class="field is-grouped">
                 <p class="control">
-                  <a class="tag is-small is-primary is-outlined">
-                    <span class="icon">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                    <span>Add to Cart</span>
-                  </a>
-                </p>
-                <p class="control">
-                  <a class="tag is-small is-light is-outlined">
-                    <span class="icon">
-                      <i class="fas fa-star"></i>
-                    </span>
-                    <span>Add to Wishlist</span>
-                  </a>
+                  <%= submit_tag("Add to cart", :class => "is-primary") %>
+                  <%= select_tag "quantity", options_for_select((1..30)) %>
                 </p>
               </div>
+              <% end %>
+
+            </div>
+          </nav>
+          <nav class="level is-mobile">
+            <div class="field">
               <p class="control">
                 <span class="icon">
                   <%= link_to content_tag(:i, 'Back', :class => "fas fa-step-backward tag is-small is-light is-outlined"), :back %>

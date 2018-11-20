@@ -15,3 +15,14 @@
 //= require turbolinks
 //= require_tree .
 //= require active_admin
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Removes the flash notificaiton
+  if (document.querySelector(".delete")) {
+    var x_button = document.querySelector(".delete");
+    console.log(x_button);
+    x_button.addEventListener('click', function () {
+      document.querySelector(".notification").remove();
+    });
+  }
+});

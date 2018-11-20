@@ -26,7 +26,7 @@
 				<div id="topNav" class="navbar-menu">
         <div class="navbar-start">
           <%= link_to "Weapons", weapons_path, :class => "navbar-item" %>
-          <a class="navbar-item" href="#">Ammunition</a>
+          <a class="navbar-item" href="#">Ammunition (coming soon)</a>
           <%= link_to "About", about_path, :class => "navbar-item" %>
           <%= link_to "Contact", contact_path, :class => "navbar-item" %>
         </div>
@@ -61,3 +61,12 @@
       </div>
     </div>
   </nav>
+  Cart
+  <%= debug session[:weapon_item] %>
+  <%= link_to 'Clear weapons', remove_from_cart_weapons_path, method: :post %>
+  <% if flash[:notice].present? %>
+    <div class="notification is-primary">
+      <button class="delete"></button>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>

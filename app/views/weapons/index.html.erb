@@ -9,10 +9,10 @@
       <div class="field has-addons">
         <div class="control is-expanded">
           <div class="select">
-            <%= select_tag 'status', options_from_collection_for_select(@statuses, :id, :name), include_blank: 'Status Filter'  %>
+            <%= select_tag 'status', options_from_collection_for_select(Status.all, :id, :name), include_blank: 'Status Filter'  %>
           </div>
           <div class="select">
-            <%= select_tag 'filter', options_from_collection_for_select(@categories, :id, :name), include_blank: 'Category Filter'  %>
+            <%= select_tag 'filter', options_from_collection_for_select(Category.all, :id, :name), include_blank: 'Category Filter'  %>
           </div>
         </div>
       </div>
