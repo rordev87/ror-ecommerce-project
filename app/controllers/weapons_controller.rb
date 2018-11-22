@@ -1,8 +1,5 @@
 class WeaponsController < ApplicationController
   def index
-    @categories = Category.all
-    @statuses = Status.all
-
     if params[:search].present? && params[:filter].present? && params[:status].present?
       @weapon_collection = Weapon.order(:name).page(params[:page]).where('name LIKE ? AND category_id = ? AND status_id = ?', "%#{params[:search]}%",  params[:filter], params[:status])
     elsif params[:search].present? && params[:status].present?
@@ -24,6 +21,26 @@ class WeaponsController < ApplicationController
 
   def show
     @weapon = Weapon.find(params[:id])
+  end
+
+  def add_to_cart
+    flash[:notice] = ''
+    id = params[:id].to_i
+    quantity = params[:quantity].to_i
+    weapon = Hash["id" => id, "quantity" => quantity]
+    unless session[:weapon_item].any? { |item| item['id'] == id}
+      product = Weapon.find(1)
+      flash[:notice] = "#{product.name} added to cart!"
+      session[:weapon_item] << weapon
+    end
+    redirect_to weapons_path
+  end
+
+  def remove_from_cart
+    # session[:weapon_item].delete(params[:id])
+    session[:weapon_item] = []
+
+    redirect_to weapons_path
   end
 
   private

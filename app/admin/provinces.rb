@@ -1,4 +1,4 @@
 ActiveAdmin.register Province do
-  permit_params :name, :tax
+  permit_params :name
 
 end

@@ -26,7 +26,7 @@
 				<div id="topNav" class="navbar-menu">
         <div class="navbar-start">
           <%= link_to "Weapons", weapons_path, :class => "navbar-item" %>
-          <a class="navbar-item" href="#">Ammunition</a>
+          <a class="navbar-item" href="#">Ammunition (coming soon)</a>
           <%= link_to "About", about_path, :class => "navbar-item" %>
           <%= link_to "Contact", contact_path, :class => "navbar-item" %>
         </div>
@@ -48,12 +48,10 @@
                 </p>
               <% end %>
               <p class="control">
-                <a class="tag is-small is-info is-outlined">
-                  <span class="icon">
-                    <i class="fas fa-shopping-cart"></i>
-                  </span>
-                  <span>Checkout</span>
-                </a>
+                <span class="tag is-small is-primary is-outlined">
+                    <i class="fas fa-shopping-cart" style="padding-right: 5px;"></i>
+                    <%= link_to "Cart", cart_path, :method => :get %>
+                </span>
               </p>
             </div>
           </div>
@@ -61,3 +59,9 @@
       </div>
     </div>
   </nav>
+  <% if flash[:notice].present? %>
+    <div class="notification is-primary">
+      <button class="delete"></button>
+      <%= flash[:notice] %>
+    </div>
+  <% end %>

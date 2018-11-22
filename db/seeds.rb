@@ -96,4 +96,24 @@ weapon_csv.each do |row|
   end
 end
 
+provinces = [
+  {"id" => 1, "name" => "Alberta", "hst" => 0, "pst" => 0, "gst" => 0.05},
+  {"id" => 2, "name" => "British Columbia", "hst" => 0, "pst" => 0.07, "gst" => 0.05},
+  {"id" => 3, "name" => "Manitoba", "hst" => 0, "pst" => 0.08, "gst" => 0.05},
+  {"id" => 4, "name" => "New Brunswick", "hst" => 0.15, "pst" => 0, "gst" => 0},
+  {"id" => 5, "name" => "Newfoundland and Labrador", "hst" => 0.15, "pst" => 0, "gst" => 0},
+  {"id" => 6, "name" => "Northwest Territories", "hst" => 0, "pst" => 0, "gst" => 0.5},
+  {"id" => 7, "name" => "Nova Scoita", "hst" => 0.15, "pst" => 0, "gst" => 0},
+  {"id" => 8, "name" => "Nunavut", "hst" => 0, "pst" => 0, "gst" => 0.5},
+  {"id" => 9, "name" => "Ontario", "hst" => 0.13, "pst" => 0, "gst" => 0},
+  {"id" => 10, "name" => "Prince Edward Island", "hst" => 0.15, "pst" => 0, "gst" => 0},
+  {"id" => 11, "name" => "Quebec", "hst" => 0, "pst" => 0.0975, "gst" => 0.05},
+  {"id" => 12, "name" => "Saskatchewan", "hst" => 0, "pst" => 0.06, "gst" => 0.05},
+  {"id" => 13, "name" => "Yukon", "hst" => 0, "pst" => 0, "gst" => 0.05},
+]
+
+provinces.each do |p|
+  Province.create(id: p["id"], name: p["name"], hst: p["hst"], pst: p["pst"], gst: p["gst"])
+end
+
 puts "Database was seeded successfully..."
