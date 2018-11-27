@@ -39,7 +39,6 @@
           </p>
           <nav class="level is-mobile">
             <div class="navbar-item">
-
               <%= form_tag add_to_cart_weapon_path, method: "post" do %>
               <div class="field is-grouped">
                 <p class="control">
@@ -48,9 +47,16 @@
                 </p>
               </div>
               <% end %>
-
             </div>
+            <p id="wish" class="control">
+              <input v-model="id" type="hidden" value='<%= "#{@weapon.id}" %>'>
+              <input v-model="name" type="hidden" value='<%= "#{@weapon.name}" %>'>
+              <button @click="persist" class="tag is-large is-outlined">
+                <i class="fas fa-star" style="padding-right: 5px;"></i>
+              </button>
+            </p>
           </nav>
+
           <nav class="level is-mobile">
             <div class="field">
               <p class="control">

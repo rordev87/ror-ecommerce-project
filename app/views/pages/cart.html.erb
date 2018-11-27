@@ -1,3 +1,67 @@
+<div class="container">
 Cart
   <%= debug session[:weapon_item] %>
-  <%= link_to 'Clear weapons', remove_from_cart_weapons_path, method: :post %>
+  <div class="columns is-mobile">
+    <div class="column"></div>
+    <div class="column is-10">
+      <% if (!session[:weapon_item].empty?) %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><abbr title="ID">Weapon Number</abbr></th>
+              <th><abbr title="Name">Name</abbr></th>
+              <th><abbr title="Quantity">Quantity</abbr></th>
+              <th><abbr title="Unit rice">Unit Price</abbr></th>
+              <th><abbr title="Price">Price</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%# foreach %>
+            <% subtotal = 0 %>
+            <% session[:weapon_item].each do |s| %>
+            <tr>
+              <td><%= s["id"] %>
+              <td><%= s["name"] %></td>
+              <td>
+                <%= s["quantity"] %>
+
+                <%= link_to raw("<span class='button is-small is-outlined'><i class='fas fa-plus'></i></span>"), increase_cart_item_quantity_weapon_path(s["id"].to_i), method: :post %>
+                <%= link_to raw("<span class='button is-small is-outlined'><i class='fas fa-minus'></i></span>"), decrease_cart_item_quantity_weapon_path(s["id"].to_i), method: :post %>
+              </td>
+              <td><%= number_to_currency(s["price"]) %></td>
+              <td><%= number_to_currency(s["price"].to_f * s["quantity"].to_i) %></td>
+              <td>
+                <span class="button is-small is-outlined is-danger">
+                  <%= link_to 'Remove', remove_item_from_cart_weapon_path(s["id"].to_i), method: :post %>
+                </span>
+              </td>
+              <% subtotal = subtotal + (s["price"].to_f * s["quantity"].to_i) %>
+            </tr>
+            <% end %>
+            <%# #end foreach %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th><abbr title="Subtotal">Subtotal: </abbr></th>
+              <th><%= number_to_currency(subtotal) %></th>
+            </tr>
+          </tfoot>
+        </table>
+        <p class="control">
+          <span class="button is-small is-secondary is-outlined">
+            <%= link_to 'Empty Cart', remove_all_from_cart_weapons_path, method: :post %>
+          </span>
+          <span class="button is-small is-primary is-outlined">
+            <%= link_to 'Proceed to Checkout', checkout_path %>
+          </span>
+        </p>
+      <% else %>
+        <h3 class="title is-3">Cart is empty...</h3>
+      <% end %>
+    </div>
+    <div class="column"></div>
+  </div>
+</div>

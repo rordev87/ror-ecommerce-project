@@ -36,11 +36,6 @@
         </div>
 
         <div class="field">
-          <%= f.label :province_id, :class => "label" %>
-          <%= f.select :province_id, options_for_select(Province.all.map{|p|[p.name, p.id]}), { include_blank: true }, { :class => "select" } %>
-        </div>
-
-        <div class="field">
           <%= f.label :address, :class => "label" %>
           <%= f.text_field :address, autocomplete: "address", :class => "input" %>
         </div>
@@ -53,6 +48,11 @@
         <div class="field">
           <%= f.label :city, :class => "label" %>
           <%= f.text_field :city, autocomplete: "city", :class => "input" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :province_id, :class => "label" %>
+          <%= f.select :province_id, options_for_select(Province.all.map{|p|[p.name, p.id]}), { include_blank: true }, { :class => "select" } %>
         </div>
 
         <div class="actions field">

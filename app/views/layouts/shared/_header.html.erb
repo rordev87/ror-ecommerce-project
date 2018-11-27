@@ -8,6 +8,7 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -63,5 +64,17 @@
     <div class="notification is-primary">
       <button class="delete"></button>
       <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <% if flash[:remove].present? %>
+    <div class="notification is-warning">
+      <button class="delete"></button>
+      <%= flash[:remove] %>
+    </div>
+  <% end %>
+  <% if flash[:update].present? %>
+    <div class="notification is-warning">
+      <button class="delete"></button>
+      <%= flash[:update] %>
     </div>
   <% end %>

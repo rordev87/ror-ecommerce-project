@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   resources :weapons, only: [:index, :show] do
     member do
-      post :add_to_cart
+      post :add_to_cart, :remove_item_from_cart, :increase_cart_item_quantity, :decrease_cart_item_quantity
     end
     collection do
-      post :remove_from_cart
+      post :remove_all_from_cart
     end
   end
 

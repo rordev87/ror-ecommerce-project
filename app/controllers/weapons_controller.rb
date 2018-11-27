@@ -26,17 +26,55 @@ class WeaponsController < ApplicationController
   def add_to_cart
     flash[:notice] = ''
     id = params[:id].to_i
+    weapon = Weapon.find(id)
     quantity = params[:quantity].to_i
-    weapon = Hash["id" => id, "quantity" => quantity]
+    price = (weapon.price).to_i * (1 - weapon.status.discount)
+    product = Hash["id" => id, "name" => weapon.name, "quantity" => quantity, "price" => price]
     unless session[:weapon_item].any? { |item| item['id'] == id}
-      product = Weapon.find(1)
-      flash[:notice] = "#{product.name} added to cart!"
-      session[:weapon_item] << weapon
+      flash[:notice] = "#{weapon.name} added to cart!"
+      session[:weapon_item] << product
     end
     redirect_to weapons_path
   end
 
-  def remove_from_cart
+  def increase_cart_item_quantity
+    id = params[:id].to_i
+    weapon = Weapon.find(id)
+    item = session[:weapon_item].select { |item| item['id'] == id }
+    item_index = session[:weapon_item].index(item[0])
+    new_quantity = item[0]["quantity"] + 1
+    session[:weapon_item][item_index]["quantity"] = new_quantity
+    flash[:update] = "#{weapon.name} quantity increased to #{new_quantity}!"
+
+    redirect_to cart_path
+  end
+
+  def decrease_cart_item_quantity
+    id = params[:id].to_i
+    weapon = Weapon.find(id)
+    item = session[:weapon_item].select { |item| item['id'] == id }
+    item_index = session[:weapon_item].index(item[0])
+    new_quantity = item[0]["quantity"] - 1
+    if new_quantity < 1
+      session[:weapon_item].delete_at(item_index)
+      flash[:update] = "#{weapon.name} quantity decreased to #{new_quantity} so it was removed!"
+    else
+     session[:weapon_item][item_index]["quantity"] = new_quantity
+      flash[:update] = "#{weapon.name} quantity decreased to #{new_quantity}!"
+    end
+    redirect_to cart_path
+  end
+
+  def remove_item_from_cart
+    id = params[:id].to_i
+    weapon = Weapon.find(id)
+    flash[:remove] = "#{weapon.name} removed from cart!"
+    session[:weapon_item].delete_if { |item| item['id'] == id}
+
+    redirect_to cart_path
+  end
+
+  def remove_all_from_cart
     # session[:weapon_item].delete(params[:id])
     session[:weapon_item] = []
 
