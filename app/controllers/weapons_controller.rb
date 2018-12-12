@@ -81,6 +81,26 @@ class WeaponsController < ApplicationController
     redirect_to weapons_path
   end
 
+  def place_order
+    subtotal = 0
+    tax_rate = current_user.province.hst + current_user.province.gst + current_user.province.pst
+    session[:weapon_item].each do |w|
+      subtotal = subtotal + (w["price"].to_f * w["quantity"].to_i)
+    end
+
+    taxes = subtotal * (tax_rate)
+    total = subtotal + taxes
+
+    order = Order.create(user_id: current_user.id, order_status: "pending", subtotal: subtotal, taxes: taxes, total: total)
+
+    session[:weapon_item].each do |w|
+      order_item = OrderItem.create(weapon_id: w['id'].to_i, order_id: order.id, quantity: w['quantity'].to_i)
+    end
+
+    session[:weapon_item] = []
+    redirect_to root_path
+  end
+
   private
     def weapon_params
       params.require(:search, :filter, :status).permit(:search, :filter, :status)

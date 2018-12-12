@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :order_items
+  devise_for :orders
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
       post :add_to_cart, :remove_item_from_cart, :increase_cart_item_quantity, :decrease_cart_item_quantity
     end
     collection do
-      post :remove_all_from_cart
+      post :remove_all_from_cart, :place_order
     end
   end
 

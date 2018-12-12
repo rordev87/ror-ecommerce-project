@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  order_date: 2018-11-30 06:05:19
+  delivery_date: 2018-11-30 06:05:19
+  order_status: MyString
+
+two:
+  customer: two
+  order_date: 2018-11-30 06:05:19
+  delivery_date: 2018-11-30 06:05:19
+  order_status: MyString

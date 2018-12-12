@@ -1,1 +1,75 @@
-Welcome to the checkout
+<div class="container">
+Cart
+  <%= debug current_user.id %>
+  <div class="columns is-mobile">
+    <div class="column"></div>
+    <div class="column is-10">
+    <% if user_signed_in? %>
+      <h2 class="subtitle is-3">Here are your order details, <%= current_user.first_name %>!</h2>
+      <% if (!session[:weapon_item].empty?) %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th><abbr title="ID">Weapon Number</abbr></th>
+              <th><abbr title="Name">Name</abbr></th>
+              <th><abbr title="Quantity">Quantity</abbr></th>
+              <th><abbr title="Price">Price</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%# foreach %>
+            <% subtotal = 0 %>
+            <% session[:weapon_item].each do |s| %>
+            <tr>
+              <td><%= s["name"] %></td>
+              <td><%= s["quantity"] %></td>
+              <td><%= number_to_currency(s["price"]) %></td>
+              <td><%= number_to_currency(s["price"].to_f * s["quantity"].to_i) %></td>
+              <% subtotal = subtotal + (s["price"].to_f * s["quantity"].to_i) %>
+            </tr>
+            <% end %>
+            <%# #end foreach %>
+          </tbody>
+          <tfoot>
+            <%# Subtotal %>
+            <tr>
+              <th></th>
+              <th></th>
+              <th><abbr title="Subtotal">Subtotal: </abbr></th>
+              <th><%= number_to_currency(subtotal) %></th>
+            </tr>
+            <%# Taxes %>
+            <tr>
+              <th></th>
+              <th></th>
+              <th><abbr title="Tax">Tax: </abbr></th>
+              <% tax_rate = current_user.province.hst + current_user.province.gst + current_user.province.pst %>
+              <% taxes = subtotal * (tax_rate) %>
+              <th><%= number_to_currency(taxes) %></th>
+            </tr>
+            <%# Grand total %>
+            <tr>
+              <th></th>
+              <th></th>
+              <th><abbr title="Total">Total: </abbr></th>
+              <% total = subtotal + taxes %>
+              <th><%= number_to_currency(total) %></th>
+            </tr>
+          </tfoot>
+        </table>
+        <p class="control">
+          <span class="button is-small is-secondary is-outlined">
+            <%= link_to 'Back to Cart', cart_path %>
+          </span>
+          <span class="button is-small is-primary is-outlined">
+            <%= link_to 'Place Order', place_order_weapons_path, method: :post %>
+          </span>
+        </p>
+        <% end %>
+      <% else %>
+        <% redirect_to new_user_session_path %>
+      <% end %>
+    </div>
+    <div class="column"></div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ Cart
               <th><abbr title="ID">Weapon Number</abbr></th>
               <th><abbr title="Name">Name</abbr></th>
               <th><abbr title="Quantity">Quantity</abbr></th>
-              <th><abbr title="Unit rice">Unit Price</abbr></th>
+              <th><abbr title="Unit Price">Unit Price</abbr></th>
               <th><abbr title="Price">Price</abbr></th>
             </tr>
           </thead>
@@ -20,7 +20,7 @@ Cart
             <% subtotal = 0 %>
             <% session[:weapon_item].each do |s| %>
             <tr>
-              <td><%= s["id"] %>
+              <td><%= s["id"] %></td>
               <td><%= s["name"] %></td>
               <td>
                 <%= s["quantity"] %>
