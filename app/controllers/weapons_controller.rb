@@ -26,6 +26,7 @@ class WeaponsController < ApplicationController
   def add_to_cart
     flash[:notice] = ''
     id = params[:id].to_i
+<<<<<<< HEAD
     weapon = Weapon.find(id)
     quantity = params[:quantity].to_i
     price = (weapon.price).to_i * (1 - weapon.status.discount)
@@ -33,10 +34,19 @@ class WeaponsController < ApplicationController
     unless session[:weapon_item].any? { |item| item['id'] == id}
       flash[:notice] = "#{weapon.name} added to cart!"
       session[:weapon_item] << product
+=======
+    quantity = params[:quantity].to_i
+    weapon = Hash["id" => id, "quantity" => quantity]
+    unless session[:weapon_item].any? { |item| item['id'] == id}
+      product = Weapon.find(1)
+      flash[:notice] = "#{product.name} added to cart!"
+      session[:weapon_item] << weapon
+>>>>>>> c8e0775f412cce674971b314da53e2d873e3689f
     end
     redirect_to weapons_path
   end
 
+<<<<<<< HEAD
   def increase_cart_item_quantity
     id = params[:id].to_i
     weapon = Weapon.find(id)
@@ -75,12 +85,16 @@ class WeaponsController < ApplicationController
   end
 
   def remove_all_from_cart
+=======
+  def remove_from_cart
+>>>>>>> c8e0775f412cce674971b314da53e2d873e3689f
     # session[:weapon_item].delete(params[:id])
     session[:weapon_item] = []
 
     redirect_to weapons_path
   end
 
+<<<<<<< HEAD
   def place_order
     subtotal = 0
     tax_rate = current_user.province.hst + current_user.province.gst + current_user.province.pst
@@ -101,6 +115,8 @@ class WeaponsController < ApplicationController
     redirect_to root_path
   end
 
+=======
+>>>>>>> c8e0775f412cce674971b314da53e2d873e3689f
   private
     def weapon_params
       params.require(:search, :filter, :status).permit(:search, :filter, :status)

@@ -60,11 +60,18 @@
       </div>
     </div>
   </nav>
+<<<<<<< HEAD
+=======
+  Cart
+  <%= debug session[:weapon_item] %>
+  <%= link_to 'Clear weapons', remove_from_cart_weapons_path, method: :post %>
+>>>>>>> c8e0775f412cce674971b314da53e2d873e3689f
   <% if flash[:notice].present? %>
     <div class="notification is-primary">
       <button class="delete"></button>
       <%= flash[:notice] %>
     </div>
+<<<<<<< HEAD
   <% end %>
   <% if flash[:remove].present? %>
     <div class="notification is-warning">
@@ -77,4 +84,6 @@
       <button class="delete"></button>
       <%= flash[:update] %>
     </div>
+=======
+>>>>>>> c8e0775f412cce674971b314da53e2d873e3689f
   <% end %>
